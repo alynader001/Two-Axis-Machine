@@ -142,16 +142,43 @@ void SystemClock_Config(void)
   */
 void MX_GPIO_Init(void)
 {
-#ifdef NUCLEO_USE_USER_BUTTON
-  /* Configures Button GPIO and EXTI Line */
-  BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_EXTI);
-#endif
 
-#ifdef NUCLEO_USE_USER_LED
-  /* Configures LED GPIO */
-  BSP_LED_Init(LED2);
-#endif
+
+  // // intializes pin P8
+  // GPIO_InitTypeDef GPIO_InitStruct;
+
+  // // Enable the GPIO clock for Port A
+  // __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  // // Configure PA8 as an input
+  // GPIO_InitStruct.Pin = GPIO_PIN_8;
+  // GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  // GPIO_InitStruct.Pull = GPIO_PULLDOWN; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
+  // GPIO_InitStruct.Speed = GPIO_SPEED_FAST; 
+  // HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+
+  // // enable the LED output
+  // GPIO_InitTypeDef GPIO_InitStruct2; 
+
+  // GPIO_InitStruct2.Pin = GPIO_PIN_9;
+  // GPIO_InitStruct2.Mode = GPIO_MODE_OUTPUT_PP;
+  // GPIO_InitStruct2.Pull = GPIO_PULLUP; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
+  // GPIO_InitStruct2.Speed = GPIO_SPEED_FAST; 
+  // HAL_GPIO_Init(GPIOA, &GPIO_InitStruct2);
+
+
+  #ifdef NUCLEO_USE_USER_BUTTON
+    /* Configures Button GPIO and EXTI Line */
+    BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_EXTI);
+  #endif
+
+  #ifdef NUCLEO_USE_USER_LED
+    /* Configures LED GPIO */
+    BSP_LED_Init(LED2);
+  #endif
 }
+
 
 /**
   * @brief  Initialize the SPI used by the NUCLEO board.
@@ -448,6 +475,10 @@ void NUCLEO_Board_Init(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+
+
+  // initialize uart/usart 
+  MX_USART2_Init();
   
   /* Initialize the SPI used by the X-NUCLEO-IHM02A1 */
   MX_SPI_Init();

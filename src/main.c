@@ -62,7 +62,7 @@
   * @{
   */
 
-//#define MICROSTEPPING_MOTOR_EXAMPLE        //!< Uncomment to performe the standalone example
+// #define MICROSTEPPING_MOTOR_EXAMPLE        //!< Uncomment to performe the standalone example
 #define MICROSTEPPING_MOTOR_USART_EXAMPLE  //!< Uncomment to performe the USART example
 #if ((defined (MICROSTEPPING_MOTOR_EXAMPLE)) && (defined (MICROSTEPPING_MOTOR_USART_EXAMPLE)))
   #error "Please select an option only!"
@@ -87,6 +87,32 @@ int main(void)
   
   /* X-NUCLEO-IHM02A1 initialization */
   BSP_Init();
+
+  //start user code here Ilan 
+
+    // // Main loop
+    // while (1)
+    // {
+    //   USART_CheckAppCmd();
+      
+    //   if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
+    //   {
+    //       // Transmit message using HAL_UART_Transmit
+    //       char message[] = "PA8 is HIGH\r\n";
+    //       HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
+          
+    //       HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+    //       // Delay to prevent message spamming
+    //       HAL_Delay(200);
+    //   }
+    //   else{
+    //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+        
+    //   }
+
+    // }
+
+
   
 #ifdef NUCLEO_USE_USART
   /* Transmit the initial message to the PC via UART */
@@ -106,12 +132,26 @@ int main(void)
 	
 	/*Initialize the motor parameters */
 	Motor_Param_Reg_Init();
-  
-  /* Infinite loop */
+    // Main loop
   while (1)
   {
-    /* Check if any Application Command for L6470 has been entered by USART */
     USART_CheckAppCmd();
+    
+    // if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
+    // {
+    //     // Transmit message using HAL_UART_Transmit
+    //     char message[] = "PA8 is HIGH\r\n";
+    //     HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
+        
+    //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+    //     // Delay to prevent message spamming
+    //     HAL_Delay(200);
+    // }
+    // else{
+    //   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+      
+    // }
+
   }
 #endif
 }

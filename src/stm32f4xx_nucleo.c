@@ -228,6 +228,14 @@ void BSP_LED_Toggle(Led_TypeDef Led)
   HAL_GPIO_TogglePin(GPIO_PORT[Led], GPIO_PIN[Led]);
 }
 
+
+// // Ilan code added here 
+// void Limit_Switch_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode)
+// {
+//   GPIO_InitTypeDef GPIO_InitStruct;
+
+// }
+
 /**
   * @brief  Configures Button GPIO and EXTI Line.
   * @param  Button: Specifies the Button to be configured.
