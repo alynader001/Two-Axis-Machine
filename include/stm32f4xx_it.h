@@ -57,6 +57,7 @@
   */
 
 void EXTI0_IRQHandler(void);
+void EXTI4_IRQHandler(void);
 void EXTI1_IRQHandler(void);
 void EXTI15_10_IRQHandler(void);
 void SysTick_Handler(void);

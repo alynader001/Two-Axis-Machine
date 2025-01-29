@@ -62,8 +62,8 @@
   * @{
   */
 
-// #define MICROSTEPPING_MOTOR_EXAMPLE        //!< Uncomment to performe the standalone example
-#define MICROSTEPPING_MOTOR_USART_EXAMPLE  //!< Uncomment to performe the USART example
+ #define MICROSTEPPING_MOTOR_EXAMPLE        //!< Uncomment to performe the standalone example
+//#define MICROSTEPPING_MOTOR_USART_EXAMPLE  //!< Uncomment to performe the USART example
 #if ((defined (MICROSTEPPING_MOTOR_EXAMPLE)) && (defined (MICROSTEPPING_MOTOR_USART_EXAMPLE)))
   #error "Please select an option only!"
 #elif ((!defined (MICROSTEPPING_MOTOR_EXAMPLE)) && (!defined (MICROSTEPPING_MOTOR_USART_EXAMPLE)))
@@ -90,27 +90,38 @@ int main(void)
 
   //start user code here Ilan 
 
-    // // Main loop
-    // while (1)
-    // {
-    //   USART_CheckAppCmd();
+    // Main loop
+    while (1)
+    {
       
-    //   if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
-    //   {
-    //       // Transmit message using HAL_UART_Transmit
-    //       char message[] = "PA8 is HIGH\r\n";
-    //       HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
-          
-    //       HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-    //       // Delay to prevent message spamming
-    //       HAL_Delay(200);
-    //   }
-    //   else{
-    //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-        
-    //   }
+      //lab 2 part 1
+      // while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_RESET)
+      // {}
 
-    // }
+      // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+
+      // while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
+      // {}
+
+      // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+      
+      //Lab 1 code 
+      // if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
+      // {
+      //     // Transmit message using HAL_UART_Transmit
+      //     char message[] = "PA8 is HIGH\r\n";
+      //     HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
+          
+      //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+      //     // Delay to prevent message spamming
+      //     HAL_Delay(200);
+      // }
+      // else{
+      //   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+        
+      // }
+
+    }
 
 
   
@@ -133,26 +144,26 @@ int main(void)
 	/*Initialize the motor parameters */
 	Motor_Param_Reg_Init();
     // Main loop
-  while (1)
-  {
-    USART_CheckAppCmd();
+  // while (1)
+  // {
+  //   USART_CheckAppCmd();
     
-    // if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
-    // {
-    //     // Transmit message using HAL_UART_Transmit
-    //     char message[] = "PA8 is HIGH\r\n";
-    //     HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
+  //   if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
+  //   {
+  //       // Transmit message using HAL_UART_Transmit
+  //       char message[] = "PA8 is HIGH\r\n";
+  //       HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
         
-    //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-    //     // Delay to prevent message spamming
-    //     HAL_Delay(200);
-    // }
-    // else{
-    //   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+  //       HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+  //       // Delay to prevent message spamming
+  //       HAL_Delay(200);
+  //   }
+  //   else{
+  //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
       
-    // }
+  //   }
 
-  }
+  // }
 #endif
 }
 

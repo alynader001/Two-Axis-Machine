@@ -142,30 +142,42 @@ void SystemClock_Config(void)
   */
 void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct3;
+
+/* Configure Button pin as input with External interrupt */
+  GPIO_InitStruct3.Pin = GPIO_PIN_4;
+  GPIO_InitStruct3.Pull = GPIO_NOPULL;
+  GPIO_InitStruct3.Mode = GPIO_MODE_IT_RISING; 
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct3);
+  
+  /* Enable and set Button EXTI Interrupt to the lowest priority */
+  HAL_NVIC_SetPriority((IRQn_Type)(EXTI4_IRQn), 0x0F, 0x00);
+  HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI4_IRQn));
 
 
-  // // intializes pin P8
-  // GPIO_InitTypeDef GPIO_InitStruct;
 
-  // // Enable the GPIO clock for Port A
-  // __HAL_RCC_GPIOA_CLK_ENABLE();
+  // intializes pin P8
+  GPIO_InitTypeDef GPIO_InitStruct;
 
-  // // Configure PA8 as an input
-  // GPIO_InitStruct.Pin = GPIO_PIN_8;
-  // GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  // GPIO_InitStruct.Pull = GPIO_PULLDOWN; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
-  // GPIO_InitStruct.Speed = GPIO_SPEED_FAST; 
-  // HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  // Enable the GPIO clock for Port A
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  // Configure PA8 as an input
+  GPIO_InitStruct.Pin = GPIO_PIN_8;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
+  GPIO_InitStruct.Speed = GPIO_SPEED_FAST; 
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 
-  // // enable the LED output
-  // GPIO_InitTypeDef GPIO_InitStruct2; 
+  // enable the LED output
+  GPIO_InitTypeDef GPIO_InitStruct2; 
 
-  // GPIO_InitStruct2.Pin = GPIO_PIN_9;
-  // GPIO_InitStruct2.Mode = GPIO_MODE_OUTPUT_PP;
-  // GPIO_InitStruct2.Pull = GPIO_PULLUP; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
-  // GPIO_InitStruct2.Speed = GPIO_SPEED_FAST; 
-  // HAL_GPIO_Init(GPIOA, &GPIO_InitStruct2);
+  GPIO_InitStruct2.Pin = GPIO_PIN_9;
+  GPIO_InitStruct2.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct2.Pull = GPIO_PULLUP; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
+  GPIO_InitStruct2.Speed = GPIO_SPEED_FAST; 
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct2);
 
 
   #ifdef NUCLEO_USE_USER_BUTTON
