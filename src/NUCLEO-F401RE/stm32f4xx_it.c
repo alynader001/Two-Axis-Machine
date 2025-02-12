@@ -87,13 +87,22 @@ void EXTI0_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
 }
 
+/*
+ * This is a handler for interrupts in pin PA8 and PB8 
+ */
+void EXTI3_IRQHandler(void)
+{
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
+  //function to stop motor 1
+}
+
+/*
+ * This is a handler for interrupts in pin PA9 and PB9
+ */
 void EXTI4_IRQHandler(void)
 {
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-  // for(int j = 0; j < 10000000; j++)
-  // {}
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
+  //function to stop motor 2
 }
 
 /**
