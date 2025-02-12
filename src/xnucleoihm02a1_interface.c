@@ -142,37 +142,37 @@ void SystemClock_Config(void)
   */
 void MX_GPIO_Init(void)
 {
-    // Switch 1 interrupt - PA9
-    GPIO_InitTypeDef GPIO_InitStructPA9;
-    GPIO_InitStructPA9.Pin = GPIO_PIN_9;
-    GPIO_InitStructPA9.Pull = GPIO_NOPULL;
-    GPIO_InitStructPA9.Mode = GPIO_MODE_IT_RISING; 
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStructPA9);
-
-    // Switch 2 - PB9
-    GPIO_InitTypeDef GPIO_InitStructPB9;
-    GPIO_InitStructPB9.Pin = GPIO_PIN_9;
-    GPIO_InitStructPB9.Pull = GPIO_NOPULL;
-    GPIO_InitStructPB9.Mode = GPIO_MODE_IT_RISING; 
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStructPB9);
-
-    /* Enable and set Button EXTI Interrupt to the lowest priority - for switch 1 and 2 */
-    HAL_NVIC_SetPriority((IRQn_Type)(EXTI3_IRQn), 0x0F, 0x00);
-    HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI3_IRQn));
-
-    // Switch 3 - PA8
+    // Switch 1 interrupt - PA8
     GPIO_InitTypeDef GPIO_InitStructPA8;
     GPIO_InitStructPA8.Pin = GPIO_PIN_8;
     GPIO_InitStructPA8.Pull = GPIO_NOPULL;
     GPIO_InitStructPA8.Mode = GPIO_MODE_IT_RISING; 
     HAL_GPIO_Init(GPIOA, &GPIO_InitStructPA8);
 
-    // Switch 4 - PB8
+    // Switch 2 - PB8
     GPIO_InitTypeDef GPIO_InitStructPB8;
     GPIO_InitStructPB8.Pin = GPIO_PIN_8;
     GPIO_InitStructPB8.Pull = GPIO_NOPULL;
     GPIO_InitStructPB8.Mode = GPIO_MODE_IT_RISING; 
     HAL_GPIO_Init(GPIOB, &GPIO_InitStructPB8);
+
+    /* Enable and set Button EXTI Interrupt to the lowest priority - for switch 1 and 2 */
+    HAL_NVIC_SetPriority((IRQn_Type)(EXTI3_IRQn), 0x0F, 0x00);
+    HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI3_IRQn));
+
+    // Switch 3 - PA9
+    GPIO_InitTypeDef GPIO_InitStructPA9;
+    GPIO_InitStructPA9.Pin = GPIO_PIN_9;
+    GPIO_InitStructPA9.Pull = GPIO_NOPULL;
+    GPIO_InitStructPA9.Mode = GPIO_MODE_IT_RISING; 
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStructPA9);
+
+    // Switch 4 - PB9
+    GPIO_InitTypeDef GPIO_InitStructPB9;
+    GPIO_InitStructPB9.Pin = GPIO_PIN_9;
+    GPIO_InitStructPB9.Pull = GPIO_NOPULL;
+    GPIO_InitStructPB9.Mode = GPIO_MODE_IT_RISING; 
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStructPB9);
 
     /* Enable and set Button EXTI Interrupt to the lowest priority - for switch 3 and 4 */
     HAL_NVIC_SetPriority((IRQn_Type)(EXTI4_IRQn), 0x0F, 0x00);

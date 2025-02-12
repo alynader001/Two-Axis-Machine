@@ -93,7 +93,8 @@ void EXTI0_IRQHandler(void)
 void EXTI3_IRQHandler(void)
 {
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
-  //function to stop motor 1
+  //function to stop motor 0
+  L6470_HardStop(0);
 }
 
 /*
@@ -102,7 +103,8 @@ void EXTI3_IRQHandler(void)
 void EXTI4_IRQHandler(void)
 {
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
-  //function to stop motor 2
+  //function to stop motor 1
+  L6470_HardStop(1);
 }
 
 /**

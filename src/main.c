@@ -105,28 +105,12 @@ int main(void)
 #endif
 	/*Initialize the motor parameters */
 	Motor_Param_Reg_Init();
-    // Main loop
-  // while (1)
-  // {
-  //   USART_CheckAppCmd();
-    
-  //   if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET)
-  //   {
-  //       // Transmit message using HAL_UART_Transmit
-  //       char message[] = "PA8 is HIGH\r\n";
-  //       HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
-        
-  //       HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-  //       // Delay to prevent message spamming
-  //       HAL_Delay(200);
-  //   }
-  //   else{
-  //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-      
-  //   }
-
-  // }
+  
+  // Main loop
   while(1)
+  {
+    
+  }
 
 }
 
