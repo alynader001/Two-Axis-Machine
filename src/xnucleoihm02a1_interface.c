@@ -178,43 +178,15 @@ void MX_GPIO_Init(void)
     HAL_NVIC_SetPriority((IRQn_Type)(EXTI4_IRQn), 0x0F, 0x00);
     HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI4_IRQn));
 
-
-  GPIO_InitTypeDef GPIO_InitStruct3;
-
-/* Configure Button pin as input with External interrupt */
-  GPIO_InitStruct3.Pin = GPIO_PIN_4;
-  GPIO_InitStruct3.Pull = GPIO_NOPULL;
-  GPIO_InitStruct3.Mode = GPIO_MODE_IT_RISING; 
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct3);
-  
-  /* Enable and set Button EXTI Interrupt to the lowest priority */
-  HAL_NVIC_SetPriority((IRQn_Type)(EXTI4_IRQn), 0x0F, 0x00);
-  HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI4_IRQn));
-
-
-
-  // intializes pin P8
-  GPIO_InitTypeDef GPIO_InitStruct;
-
-  // Enable the GPIO clock for Port A
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
-  // Configure PA8 as an input
-  GPIO_InitStruct.Pin = GPIO_PIN_8;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
-  GPIO_InitStruct.Speed = GPIO_SPEED_FAST; 
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-
-  // enable the LED output
-  GPIO_InitTypeDef GPIO_InitStruct2; 
-
-  GPIO_InitStruct2.Pin = GPIO_PIN_9;
-  GPIO_InitStruct2.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct2.Pull = GPIO_PULLUP; // Use GPIO_PULLUP or GPIO_PULLDOWN if needed
-  GPIO_InitStruct2.Speed = GPIO_SPEED_FAST; 
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct2);
+    //This is code to configure ADC1_IN0 in pin PA0
+    GPIO_InitTypeDef GPIO_InitStructPA0;
+    GPIO_InitStructPA0.Pin = GPIO_PIN_0;
+    GPIO_InitStructPA0.Pull = GPIO_NOPULL;
+    GPIO_InitStructPA0.Mode = GPIO_MODE_ANALOG;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStructPA0);
+    
+    //initialize ADC1;
+    MX_ADC1_Init();
 
 
   #ifdef NUCLEO_USE_USER_BUTTON
@@ -477,17 +449,17 @@ void MX_ADC1_Init(void)
 
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
     */
- // hadc1.Instance = ADC1;
- // hadc1.Init.ClockPrescaler = ;
- // hadc1.Init.Resolution = ;
- // hadc1.Init.ScanConvMode = ;
- // hadc1.Init.ContinuousConvMode = ;
- // hadc1.Init.DiscontinuousConvMode = ;
- // hadc1.Init.ExternalTrigConvEdge = ;
- // hadc1.Init.DataAlign = ;
- // hadc1.Init.NbrOfConversion = ;
- // hadc1.Init.DMAContinuousRequests = ;
- // hadc1.Init.EOCSelection = ;
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   HAL_ADC_Init(&hadc1);
 
     /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 

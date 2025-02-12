@@ -109,7 +109,19 @@ int main(void)
   // Main loop
   while(1)
   {
-    
+    //Get readings from ADC1
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+    uint32_t adc_value = HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
+
+    float voltage = (adc_value / 4095.0) * 3.3;
+
+    char message[50];
+    sprintf(message, "ADC value is %.2fV\r\n", voltage);
+    HAL_UART_Transmit(&huart2, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
+
+
   }
 
 }
